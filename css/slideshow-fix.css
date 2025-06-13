@@ -1,0 +1,18 @@
+/* Fix for slideshow covering content */
+#hero.bg-slideshow {
+    z-index: 1;
+}
+
+#about-us,
+#our-story-title,
+#loveline,
+#the-wedding,
+#location,
+#giftregistry,
+#gallery,
+#blog,
+#rsvp,
+#footer-onepage {
+    position: relative;
+    z-index: 2;
+} 
