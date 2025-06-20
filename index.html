@@ -135,6 +135,8 @@
 </head>
 <body>
 
+	<audio id="background-song" src="backgroundsong.mp3" loop></audio>
+
 	<!-- BEGIN PRELOADER -->
 	<div id="preloader">
 		<div class="loading-heart">
@@ -969,6 +971,28 @@
 	<!-- Template Scripts -->
 	<script src="js/variables.js"></script>
 	<script src="js/scripts.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			const audio = document.getElementById('background-song');
+	
+			// Try to play audio automatically.
+			let playPromise = audio.play();
+	
+			if (playPromise !== undefined) {
+				playPromise.then(_ => {
+					// Automatic playback started.
+				}).catch(error => {
+					// Auto-play was prevented.
+					// We'll wait for a user interaction to play the audio.
+					console.log("Audio autoplay was prevented by browser policy. Waiting for user interaction.");
+					$(document.body).one('click', function() {
+						audio.play();
+					});
+				});
+			}
+		});
+	</script>
 
 </body>
 </html>
