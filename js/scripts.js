@@ -179,12 +179,12 @@ var Neela;
         },
 
         preloader: function () {
-            var isLoaded = setInterval(function () {
+            /*var isLoaded = setInterval(function () {
                 if (/loaded|complete/.test(document.readyState)) {
                     clearInterval(isLoaded);
                     $("#preloader").fadeOut(1000);
                 }
-            }, 10);
+            }, 10);*/
         },
 
         navigation: function () {

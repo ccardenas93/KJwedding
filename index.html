@@ -148,6 +148,9 @@
 				<small>&</small><br>
 				Kelly
 			</div>
+			<div class="enter-prompt" style="color: #555; margin-top: 20px; font-weight: bold; font-family: 'Poppins', sans-serif;">
+				Haz clic para entrar
+			</div>
 		</div>
 	</div>
 	<!-- END PRELOADER -->
@@ -975,22 +978,24 @@
 	<script>
 		$(document).ready(function() {
 			const audio = document.getElementById('background-song');
-	
-			// Try to play audio automatically.
-			let playPromise = audio.play();
-	
-			if (playPromise !== undefined) {
-				playPromise.then(_ => {
-					// Automatic playback started.
-				}).catch(error => {
-					// Auto-play was prevented.
-					// We'll wait for a user interaction to play the audio.
-					console.log("Audio autoplay was prevented by browser policy. Waiting for user interaction.");
-					$(document.body).one('click', function() {
-						audio.play();
+			const preloader = $('#preloader');
+
+			// Make the preloader clickable
+			preloader.css('cursor', 'pointer');
+
+			preloader.on('click', function() {
+				// Hide the preloader
+				$(this).fadeOut('slow');
+
+				// Play audio
+				const playPromise = audio.play();
+
+				if (playPromise !== undefined) {
+					playPromise.catch(error => {
+						console.error("Audio playback failed on click:", error);
 					});
-				});
-			}
+				}
+			});
 		});
 	</script>
 
